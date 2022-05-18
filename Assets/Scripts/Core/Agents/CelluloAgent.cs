@@ -35,14 +35,14 @@ public class CelluloAgent : SteeringAgent
     /// <summary>
     /// Fixed update loop
     /// </summary>
-    protected override void FixedUpdate() {
+    protected virtual void FixedUpdate() {
         clock_t += Time.deltaTime;
 
         if (_celluloRobot!=null) {
             _celluloRobot.UpdateProperties();
             if(isConnected) RealToUnity();
         }
-        base.FixedUpdate();
+
     }
 
     /// <summary>
@@ -139,30 +139,71 @@ public class CelluloAgent : SteeringAgent
         }
     }
 
+    /// <summary>
+    /// Event signaled when robot is kidnapped
+    /// </summary>
     public virtual void OnKidnapped(object sender, EventArgs e){
-        BroadcastMessage("OnCelluloKidnapped",SendMessageOptions.DontRequireReceiver);
+        //Debug.Log("kidnapped: "+ _celluloRobot.Kidnapped);
     }
+    /// <summary>
+    /// Event signaled when robot kidnapping ends 
+    /// </summary>
     public virtual void OnUnKidnapped(object sender, EventArgs e){
-        BroadcastMessage("OnCelluloUnKidnapped",SendMessageOptions.DontRequireReceiver);
+        //Debug.Log("kidnapped: "+ _celluloRobot.Kidnapped);
     }
     public virtual void OnShutDown(object sender, EventArgs e){
         Invoke("SetRobotToNull", 1);
     }
 
+    /// <summary>
+    /// Virtual function, to be implemented if OnLongTouch from Real robot is needed
+    /// </summary>
+    /// <param name="key">
+    /// the number of the key touch sensor 
+    /// </param>
     protected virtual void OnLongTouch(int key)
     {
-        BroadcastMessage("OnCelluloLongTouch",key,SendMessageOptions.DontRequireReceiver);
+        //Debug.Log("Touch Key " + key + " is long touched");
     }
+    
+    /// <summary>
+    /// Virtual function, to be implemented if OnTouchBegan from Real robot is needed
+    /// </summary>
+    /// <param name="key">
+    /// the number of the key touch sensor 
+    /// </param>
     protected virtual void OnTouchBegan(int key)
     {
-        BroadcastMessage("OnCelluloTouchBegan",key,SendMessageOptions.DontRequireReceiver);
+        //Debug.Log("Touch Key " + key + "is touched");
     }
     
+    /// <summary>
+    /// Virtual function, to be implemented if OnTouchReleased from Real robot is needed
+    /// </summary>
+    /// <param name="key">
+    /// the number of the key touch sensor 
+    /// </param>
     protected virtual void OnTouchReleased(int key)
     {
-        BroadcastMessage("OnCelluloTouchReleased",key,SendMessageOptions.DontRequireReceiver);
+        //Debug.Log("Touch Key " + key + " is released");
     }
-    
+    /// <summary>
+    /// Virtual function, to be implemented if OnCollisionEnter from Collider is needed
+    /// </summary>
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+
+    }
+
+    /// <summary>
+    /// Virtual function, to be implemented if onCollisionExit from Collider is needed
+    /// </summary>
+
+    protected virtual void OnCollisionExit(Collision collision)
+    {
+
+    }
+
     /// <summary>
     /// Sets the real robot velocity from the steering agent velocity
     /// </summary>
@@ -196,11 +237,17 @@ public class CelluloAgent : SteeringAgent
     /// <param name="effect">
     /// The effect ordinal (check VisualEffect enum)
     /// </param>
-    /// <param name="color ">
-    /// The unity Color value. 
+    /// <param name="r">
+    /// The amount of red color (between 0 and 255)
+    /// </param>
+    /// <param name="g">
+    /// The amount of green color (between 0 and 255)
+    /// </param>
+    /// <param name="b">
+    /// The amount of blue color (between 0 and 255)
     /// </param>
     /// <param name="value">
-    /// A value possibly meaningful for the effect (check VisualEffect)
+    /// A value possibly meaningful for the effect (between 0 and 255)
     /// </param>
     public void SetVisualEffect(VisualEffect effect, Color color, int value){
         switch(effect){

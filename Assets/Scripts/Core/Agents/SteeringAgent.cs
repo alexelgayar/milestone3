@@ -9,32 +9,19 @@ public class SteeringAgent : MonoBehaviour
 {
     public bool blendWeight = false; //!< If more than one behavior is included and the desired output is a weighted sum of the different behaviors.
 
-    public float maxSpeed  {get; protected set;} = 3f; //!< maximum speed in unity units
-    public float maxAccel {get; protected set;}  = 15f; //!< maximum acceleration in unity units
-    public float maxRotation {get; protected set;}  = 360f; //!< maximum rotation in unity units
-    public float maxAngularAccel {get; protected set;}  = 7.5f; //!< maximum angular accel in unity units
+    public float maxSpeed  {get; private set;} = 3f; //!< maximum speed in unity units
+    public float maxAccel {get; private set;}  = 15f; //!< maximum acceleration in unity units
+    public float maxRotation {get; private set;}  = 360f; //!< maximum rotation in unity units
+    public float maxAngularAccel {get; private set;}  = 7.5f; //!< maximum angular accel in unity units
 
     protected float rotation;
     protected Vector3 velocity;
     protected Steering steering;
-    private AgentBehaviour[] behaviours; 
 
-    protected virtual void Start()
+    void Start()
     {
         velocity = Vector3.zero;
         steering = new Steering();
-        behaviours = GetComponents<AgentBehaviour>();
-
-    }
-
-    protected virtual void FixedUpdate(){
-        steering = new Steering();
-        foreach(AgentBehaviour behaviour in behaviours){
-            if (blendWeight)
-                SetSteering(behaviour.GetSteering(), behaviour.weight);
-            else
-                SetSteering(behaviour.GetSteering());
-        }
     }
 
     /// <summary> 
@@ -49,6 +36,8 @@ public class SteeringAgent : MonoBehaviour
         
         rotation = steering.angular == 0.0f ? 0.0f : rotation;
         velocity = steering.linear.sqrMagnitude == 0.0f ? Vector3.zero : velocity;
+
+        steering = new Steering();
     }
     public void SetSteering(Steering steering)
     {
@@ -59,7 +48,8 @@ public class SteeringAgent : MonoBehaviour
     {
         this.steering.linear += (weight * steering.linear);
         this.steering.angular += (weight * steering.angular);
-    }   
+    }
+   
 }
 
 //!< Steering serves as a custom data type for storing the movement and rotation of the agent:

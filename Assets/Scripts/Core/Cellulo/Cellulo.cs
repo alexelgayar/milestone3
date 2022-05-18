@@ -128,7 +128,6 @@ public class Cellulo
         CasualBackdriveAssistEnabled = false;
         LocomotionInteractivityMode = LocomotionInteractivityMode.LocomotionInteractivityModeNormal;
         GestureEnabled = false;
-        Kidnapped = false;
     }
 
     /// <summary>
@@ -149,7 +148,8 @@ public class Cellulo
     public void UpdateProperties()
     {
         if (id != 0)
-        {   
+        {
+
             if (GetKidnapped() != Kidnapped)
             {
                 Kidnapped = GetKidnapped();
@@ -960,7 +960,7 @@ public class Cellulo
     }
 
     [DllImport("cellulolib")]
-    private static extern bool getKidnapped(long robot);
+    private static extern long getKidnapped(long robot);
     /// <summary>
     /// Returns whether the robot is not on encoded paper.
     /// </summary>
@@ -974,7 +974,7 @@ public class Cellulo
             Debug.LogWarning("Robot is broken (connection to pool failed). Cannot do API call");
             return (false);
         }
-        return getKidnapped(id);
+        return getKidnapped(id) > 0;
     }
 
     [DllImport("cellulolib")]
