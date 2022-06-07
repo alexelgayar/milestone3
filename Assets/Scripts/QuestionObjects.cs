@@ -21,6 +21,9 @@ public class QuestionObjects : MonoBehaviour
     public void SpawnOne()
     {
         int i = Random.Range(0, objects.Length - 1);
+        float x = Random.Range(-16, 16);
+        float z = Random.Range(-7.5f, 7.7f);
+        objects[i].transform.Translate(x, 0 ,z);
         objects[i].SetActive(true);
         oneSpawned = true;
     }

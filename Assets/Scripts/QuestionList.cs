@@ -98,7 +98,6 @@ public class QuestionList : MonoBehaviour
             if(answeringCellulo == cellulo)
             {
                 Score score = cellulo.GetComponent<Score>();
-                DogColour col = cellulo.GetComponent<DogColour>();
                 answeringCellulo = null;
                 if(answer == 0)
                 {
@@ -166,10 +165,12 @@ public class QuestionList : MonoBehaviour
                         score.score -= 5;
                     }
                 }
+                GameObject main = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+                QuestionObjects spawn = main.GetComponent<QuestionObjects>();
                 print(score.score);
                 questionPane.SetActive(false);
+                spawn.SpawnLater();
                 Time.timeScale = 1;
-                col.setColour();
 
 
 
