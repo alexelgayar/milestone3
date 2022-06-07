@@ -9,8 +9,7 @@ public class QuestionObjects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int i = Random.Range(3, 8);
-        Invoke("SpawnOne", i);
+        SpawnLater();
     }
 
     // Update is called once per frame
@@ -24,5 +23,12 @@ public class QuestionObjects : MonoBehaviour
         int i = Random.Range(0, objects.Length - 1);
         objects[i].SetActive(true);
         oneSpawned = true;
+    }
+
+    public void SpawnLater()
+    {
+        int i = Random.Range(3, 8);
+        Invoke("SpawnOne", i);
+
     }
 }

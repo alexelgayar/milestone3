@@ -18,17 +18,7 @@ public class DogColour : MonoBehaviour
     void Start()
     {
 
-        script = GetComponent<CelluloAgentRigidBody>();
-        if (color == Colour.green) {
-            script.SetVisualEffect(0, Color.green, 255);
-            
-        }
-        else
-        {
-            script.SetVisualEffect(0, Color.blue, 255);
-
-        }
-
+        setColour();
 
     }
 
@@ -41,9 +31,25 @@ public class DogColour : MonoBehaviour
 
     }
 
-    
+    public void setColour()
+    {
+        script = GetComponent<CelluloAgentRigidBody>();
+        if (color == Colour.green)
+        {
+            script.SetVisualEffect(0, Color.green, 255);
 
-    
+        }
+        else
+        {
+            script.SetVisualEffect(0, Color.blue, 255);
 
-    
+        }
+
+
+    }
+
+
+
+
+
 }
