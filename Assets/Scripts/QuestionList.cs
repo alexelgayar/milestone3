@@ -54,7 +54,7 @@ public class QuestionList : MonoBehaviour
         q3.yellow = "15";
         q3.magenta = "19";
         q3.white = "20";
-        q3.correct = q3.white;
+        q3.correct = q2.white;
         qList.Add(q3);
 
 

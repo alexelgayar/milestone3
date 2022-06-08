@@ -74,6 +74,9 @@ public class AgentBehaviour : MonoBehaviour
     /// the number of the key touch sensor 
     /// </param>
     public virtual void OnCelluloTouchBegan(int key){
+        GameObject main = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+        QuestionList list = main.GetComponent<QuestionList>();
+        list.answerQuestion(this.gameObject, key);
     }
     /// <summary>
     /// Virtual function, to be implemented if OnTouchReleased from Real robot is needed
@@ -82,8 +85,11 @@ public class AgentBehaviour : MonoBehaviour
     /// the number of the key touch sensor 
     /// </param>
     public virtual void OnCelluloTouchReleased(int key){
+        DogColour col = gameObject.GetComponent<DogColour>();
+        col.setColour();
+
     }
-        /// <summary>
+    /// <summary>
     /// Virtual function, to be implemented if OnLongTouch from Real robot is needed
     /// </summary>
     /// <param name="key">
