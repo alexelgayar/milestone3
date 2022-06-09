@@ -9,6 +9,9 @@ public class ObjectsBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        print(gameObject.transform.position.x);
+        print(gameObject.transform.position.z);
+
         main = GameObject.FindGameObjectsWithTag("MainCamera")[0];
         list = main.GetComponent<QuestionList>();
 

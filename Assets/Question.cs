@@ -10,6 +10,5 @@ public class Question
     public string green;
     public string yellow;
     public string magenta;
-    public string white;
     public string correct;
 }

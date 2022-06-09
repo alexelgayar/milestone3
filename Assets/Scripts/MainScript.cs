@@ -5,36 +5,40 @@ using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour
 {
-    public Slider timerSlider;
-    float maxTime;
-    float curTime;
+    //public Slider timerSlider;
+    //float maxTime;
+    //float curTime;
     public Text winnerText;
-    public Text text2win;
     public GameObject endscene;
     public GameObject dog1;
     public GameObject dog2;
-    public GameObject backBut;
-    public Text mins;
-    public Text secs;
+    //public GameObject backBut;
+    Score score1;
+    Score score2;
+    //public Text mins;
+    //public Text secs;
     // Start is called before the first frame update
     void Start()
     {
-        curTime = 0f;
-        maxTime = TimeHandler.time;
-        
+        score1 = dog1.GetComponent <Score>();
+        score2 = dog2.GetComponent<Score>();
+
+        //curTime = 0f;
+        //maxTime = TimeHandler.time;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
-            curTime += Time.deltaTime;
-            timerSlider.value = curTime / maxTime;
-            secs.text = (((int)curTime) % 60).ToString("00");
-            mins.text = (((int)curTime) / 60).ToString("00") + ":";
-            if (timerSlider.value == 1.0f) {
-                EndGame();
-            }
+            //curTime += Time.deltaTime;
+            //timerSlider.value = curTime / maxTime;
+            //secs.text = (((int)curTime) % 60).ToString("00");
+            //mins.text = (((int)curTime) / 60).ToString("00") + ":";
+            //if (timerSlider.value == 1.0f) {
+            //    EndGame();
+            //}
         
 
     }
@@ -42,7 +46,7 @@ public class MainScript : MonoBehaviour
 
     void EndGame()
     {
-        backBut.SetActive(false);
+        //backBut.SetActive(false);
         endscene.SetActive(true);
 
         Score s1 = dog1.GetComponent<Score>();
@@ -53,21 +57,17 @@ public class MainScript : MonoBehaviour
 
         if(p1Score > p2Score)
         {
-            text2win.text = "THE WINNER IS:";
-            winnerText.color = Color.red;
-            winnerText.text = "TEAM RED";
+        
+            winnerText.color = Color.blue;
+            winnerText.text = "TEAM BLUE";
 
         }
-        else if(p1Score == p2Score)
-        {
-            text2win.text = "IT'S A TIE!";
-            winnerText.text = "";
-        }
+       
+        
         else {
 
-            text2win.text = "THE WINNER IS:";
-            winnerText.text = "TEAM BLUE";
-            winnerText.color = Color.blue;
+            winnerText.text = "TEAM GREEN";
+            winnerText.color = Color.green;
 
         }
 
@@ -86,6 +86,15 @@ public class MainScript : MonoBehaviour
 
     public void Resume(){
         Time.timeScale = 1;
+
+    }
+
+    public void checkScore()
+    {
+        if(score1.score >= 40 || score2.score >= 40)
+        {
+            EndGame();
+        }
 
     }
 }
