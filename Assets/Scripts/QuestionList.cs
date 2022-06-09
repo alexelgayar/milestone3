@@ -44,6 +44,7 @@ public class QuestionList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        curTime = 20f;
         qList = new List<Question>();
 
         q1.question = "What is the capital of Egypt";
