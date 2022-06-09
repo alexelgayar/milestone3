@@ -23,9 +23,10 @@ public class ObjectsBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        this.gameObject.SetActive(false);
+
         list.displayQuestion(other.gameObject, this.gameObject);
+
+        this.gameObject.SetActive(false);
 
     }
 }

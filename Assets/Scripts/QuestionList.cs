@@ -18,7 +18,7 @@ public class QuestionList : MonoBehaviour
     public Text answer6;
 
     float curTime;
-    public static float maxTime;
+    float maxTime = TimeHandler.time;
     public Text secs;
 
     Question q1 = new Question();
@@ -39,6 +39,9 @@ public class QuestionList : MonoBehaviour
     Question q16 = new Question();
     Question q17 = new Question();
     Question q18 = new Question();
+    Question q19 = new Question();
+    Question q20 = new Question();
+
     List<Question> qList;
 
 
@@ -210,6 +213,24 @@ public class QuestionList : MonoBehaviour
         q18.correct = q18.magenta;
         qList.Add(q18);
 
+        q19.question = "How long is a marathon";
+        q19.red = "42.2 km";
+        q19.blue = "50.5 km";
+        q19.green = "32.4 km";
+        q19.yellow = "24.7 km";
+        q19.magenta = "61.8 km";
+        q19.correct = q19.red;
+        qList.Add(q19);
+
+        q20.question = "What type of race is the Tour de France";
+        q20.red = "car race";
+        q20.blue = "bike race";
+        q20.green = "running race";
+        q20.yellow = "motorcycle race";
+        q20.magenta = "swimming race";
+        q20.correct = q20.blue;
+        qList.Add(q20);
+
     }
 
     // Update is called once per frame
@@ -217,7 +238,7 @@ public class QuestionList : MonoBehaviour
     {
         if (questionPane.activeSelf)
         {
-            if(curTime > 0)
+            if (curTime > 0)
             {
                 curTime -= Time.deltaTime;
             }
@@ -249,8 +270,25 @@ public class QuestionList : MonoBehaviour
         script.SetVisualEffect(VisualEffect.VisualEffectConstSingle, Color.magenta, 4);
         script.SetVisualEffect(VisualEffect.VisualEffectConstSingle, Color.white, 5);
         answeringCellulo = cellulo.transform.parent.gameObject;
+        int i = 0;
+        if (obj.name.Equals("star"))
+        {           
+            i = Random.Range(0, 5);
+        }
+        else if(obj.name.Equals("heart"))
+        {
+            i = Random.Range(6, 11);
+        }
+        else if (obj.name.Equals("cube"))
+        {
+            i = Random.Range(12, 17);
+        }
+        else if (obj.name.Equals("ball"))
+        {
+            i = Random.Range(18, 19);
+        }
 
-        int i = Random.Range(0, qList.Count - 1);
+
         currQ = qList[i];
         qText.text = qList[i].question;
         answer1.text = qList[i].red;
@@ -258,9 +296,8 @@ public class QuestionList : MonoBehaviour
         answer3.text = qList[i].green;
         answer4.text = qList[i].yellow;
         answer5.text = qList[i].magenta;
-        questionPane.SetActive(true);
-        //Time.timeScale = 0;
 
+        questionPane.SetActive(true);
     }
 
     public void answerQuestion(GameObject cellulo, int answer)
