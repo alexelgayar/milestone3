@@ -18,6 +18,7 @@ public class QuestionList : MonoBehaviour
     public Text answer6;
 
     float curTime;
+    public static float maxTime;
     public Text secs;
 
     Question q1 = new Question();
@@ -44,7 +45,7 @@ public class QuestionList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        curTime = 20f;
+        curTime = maxTime;
         qList = new List<Question>();
 
         q1.question = "What is the capital of Egypt";
@@ -239,7 +240,7 @@ public class QuestionList : MonoBehaviour
 
     public void displayQuestion(GameObject cellulo, GameObject obj)
     {
-        curTime = 20; 
+        curTime = maxTime; 
         script = cellulo.GetComponentInParent<CelluloAgentRigidBody>();
         script.SetVisualEffect(VisualEffect.VisualEffectConstSingle, Color.red, 0);
         script.SetVisualEffect(VisualEffect.VisualEffectConstSingle, Color.blue, 1);
