@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour
 {
-    //public Slider timerSlider;
+    
     //float maxTime;
     //float curTime;
     public Text winnerText;

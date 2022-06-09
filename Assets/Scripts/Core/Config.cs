@@ -30,8 +30,8 @@ public static class Config
     The default is that 10 units in unity = min(x dimension of real map, y dimension of real map) */
     public static MapOriginPosition ORIGIN = MapOriginPosition.TopLeft;
     public static MapOrientation ORIENTATION = MapOrientation.XisLarger;
-    public static int REAL_MAP_DIMENSION_X = 420 ; // in mm 
-    public static int REAL_MAP_DIMENSION_Y = 270; // in mm 
+    public static int REAL_MAP_DIMENSION_X = 1189 ; // in mm 
+    public static int REAL_MAP_DIMENSION_Y = 841; // in mm 
 
     public static float GetCelluloScale(){
         return 1000.0f/ Mathf.Min(REAL_MAP_DIMENSION_X,REAL_MAP_DIMENSION_Y);
