@@ -375,7 +375,7 @@ public class QuestionList : MonoBehaviour
 
     void removePane()
     {
-        curTime = 20f;
+        curTime = maxTime;
         questionPane.SetActive(false);
         GameObject main = GameObject.FindGameObjectsWithTag("MainCamera")[0];
         QuestionObjects spawn = main.GetComponent<QuestionObjects>();
