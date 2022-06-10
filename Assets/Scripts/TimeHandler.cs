@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeHandler : MonoBehaviour
 {
-    public static float time = 10f;
+    public static float time = 15f;
     // Start is called before the first frame update
     public void HandleInputData(int val)
     {
